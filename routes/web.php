@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@index');
 
-Route::resource('home','TournamentController');
+Route::resource('tournaments', 'TournamentController');
