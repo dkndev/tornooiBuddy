@@ -25,5 +25,15 @@ class Tournament extends Model
         return $this->belongsTo('App\Models\Tournaments\Type');
     }
 
+    public function rankings()
+    {
+        return $this->belongsToMany(
+            'App\Models\Tournaments\Ranking',
+            'tournaments_rankings',
+            'tournament_id',
+            'ranking_id')
+            ->orderBy('ranking_id', 'asc');
+    }
+
 
 }

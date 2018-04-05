@@ -5,13 +5,17 @@
     <h1>test</h1>
 
     @foreach($tournaments as $t)
+        {{--<h4>{{$t->}}</h4>--}}
         <p>tornooi id: {{$t->id}}</p>
-        <p>tornooi start: {{$t->date_start}}</p>
-        <p>tornooi end: {{$t->date_end}}</p>
-        <p>tornooi id: {{$t->id}}</p>
+        <span>tornooi start: {{$t->date_start}}</span>
+        <span>tornooi end: {{$t->date_end}}</span>
         <p>tornooi location: {{$t->location->adress}}</p>
         <p>tornooi contact: {{$t->contact->name}}</p>
-        <p>tornooi type: {{$t->type->type}}</p>
+        <span>tornooi type: {{$t->type->type}}</span>
+
+        @foreach($t->rankings as $rank)
+            <button class="btn btn-primary">{{$rank->rank}}</button>
+        @endforeach
 
         <hr>
     @endforeach
