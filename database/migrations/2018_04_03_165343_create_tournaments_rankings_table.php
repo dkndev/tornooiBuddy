@@ -20,7 +20,7 @@ class CreateTournamentsRankingsTable extends Migration
         });
 
         Schema::table('tournaments_rankings', function (Blueprint $table) {
-            $table->foreign('tournament_id')->references('id')->on('Tournaments');
+            $table->foreign('tournament_id')->references('id')->on('tournaments');
             $table->foreign('ranking_id')->references('id')->on('rankings');
         });
     }

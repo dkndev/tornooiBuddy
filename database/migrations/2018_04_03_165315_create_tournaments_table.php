@@ -13,7 +13,7 @@ class CreateTournamentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Tournaments', function (Blueprint $table) {
+        Schema::create('tournaments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id')->unsigned()->nullable();
             $table->integer('contact_id')->unsigned()->nullable();
@@ -24,7 +24,7 @@ class CreateTournamentsTable extends Migration
             $table->timestamp('updated_at')->nullable();
         });
 
-        Schema::table('Tournaments', function (Blueprint $table) {
+        Schema::table('tournaments', function (Blueprint $table) {
             $table->foreign('location_id')->references('id')->on('locations');
             $table->foreign('contact_id')->references('id')->on('contacts');
             $table->foreign('type_id')->references('id')->on('types');
@@ -40,6 +40,6 @@ class CreateTournamentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Tournaments');
+        Schema::dropIfExists('tournaments');
     }
 }
