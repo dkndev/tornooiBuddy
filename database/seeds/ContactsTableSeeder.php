@@ -11,6 +11,10 @@ class ContactsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Tournaments\Contact::class,2)->create();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        \App\Models\Tournaments\Contact::truncate();
+        factory(\App\Models\Tournaments\Contact::class,5)->create();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
     }
 }

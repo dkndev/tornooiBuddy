@@ -11,6 +11,9 @@ class LocationTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Tournaments\Location::class, 2)->create();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        \App\Models\Tournaments\Location::truncate();
+        factory(\App\Models\Tournaments\Location::class, 10)->create();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }
