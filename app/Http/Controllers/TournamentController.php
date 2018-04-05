@@ -50,7 +50,10 @@ class TournamentController extends Controller
      */
     public function show($id)
     {
-        //
+        $t = Tournament::find($id);
+        return view('tournament.tournament',[
+            't' => $t
+        ]);
     }
 
     /**

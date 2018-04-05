@@ -5,11 +5,11 @@
     <h1>test</h1>
 
     @foreach($tournaments as $t)
-        {{--<h4>{{$t->}}</h4>--}}
+        <h4><a href="{{route('tournaments.show',['id'=> $t->id])}}">{{$t->name}}</a></h4>
         <p>tornooi id: {{$t->id}}</p>
         <span>tornooi start: {{$t->date_start}}</span>
         <span>tornooi end: {{$t->date_end}}</span>
-        <p>tornooi location: {{$t->location->adress}}</p>
+        <p>tornooi location: {{$t->location->address}}</p>
         <p>tornooi contact: {{$t->contact->name}}</p>
         <span>tornooi type: {{$t->type->type}}</span>
 
