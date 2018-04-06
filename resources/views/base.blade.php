@@ -10,7 +10,9 @@
 </header>
 
 <div class="container mt-5">
-    @yield('content')
+    <div id="vueApp">
+        @yield('content')
+    </div>
 </div>
 
 <footer class="container py-5">
