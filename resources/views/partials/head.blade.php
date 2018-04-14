@@ -8,5 +8,5 @@
 <!-- Fonts -->
 {{--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">--}}
 
-<script src="http://maps.google.com/maps/api/js?key=AIzaSyDJVBNuK_VEtQunQQvcOnfISPTUgnKtXkc"
-        type="text/javascript"></script>
+{{--<script src="http://maps.google.com/maps/api/js?key=AIzaSyDJVBNuK_VEtQunQQvcOnfISPTUgnKtXkc"--}}
+        {{--type="text/javascript"></script>--}}
