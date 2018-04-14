@@ -76,7 +76,7 @@
                 tournaments: {},
                 filters: {
                     date: {
-                        start: null,
+                        start: "",
                         end: null
                     },
                     location: {
@@ -98,6 +98,18 @@
             }
         },
         methods: {
+            makeDate: function () {
+                let today = "";
+                let oneYear = "";
+                let d = new Date();
+                let month = (d.getMonth() > 10 ? (d.getMonth()+1) : '0' + (d.getMonth()+1));
+                let day = (d.getDate() > 10 ? d.getDate() : '0' + d.getDate());
+                today = d.getFullYear() + '-' + month + '-' + day;
+                oneYear = d.getFullYear()+1 + '-' + month + '-' + day;
+                this.filters.date.start = today;
+                this.filters.date.end = oneYear;
+
+            },
             calculatNewRange: function () {
                 console.log('range');
                 const r_earth = 6378.1;
@@ -107,29 +119,25 @@
                 this.maxRange.minLon = this.filters.location.coordinates.lon + (-this.filters.location.distance / r_earth) * (180 / Math.PI) / Math.cos(this.filters.location.coordinates.lat * Math.PI / 180);
             },
             getCoordinatesFromPostcode: function () {
-                console.log('axios');
-                axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-                    responseType: 'json',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'x-apikey': 'AIzaSyDJVBNuK_VEtQunQQvcOnfISPTUgnKtXkc',
-                        'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods': 'GET',
-                        'Access-Control-Expose-Headers': 'Access-Control-Allow-Origin'
-                    },
-                    params: {
-                        key: "AIzaSyDJVBNuK_VEtQunQQvcOnfISPTUgnKtXkc",
-                        sensor: true,
-                        address: 'BE ' + this.filters.location.postcode
-                    }
-                })
-                    .then(response => {
-                        console.log(response);
-                        this.test = response;
+                let postcode = this.filters.location.postcode;
+                if (postcode.length === 4) {
+                    console.log('axios');
+                    axios.get('http://tornooibuddy.local/api/postcode/' + postcode, {
+                        responseType: 'json',
                     })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                        .then(response => {
+                            console.log(response);
+                            this.test = response.data;
+                            let data = response.data;
+                            this.filters.location.coordinates.lat = data.latitude;
+                            this.filters.location.coordinates.lon = data.longitude;
+
+                            this.calculatNewRange();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
             }
         },
         watch: {
@@ -140,11 +148,12 @@
                 this.calculatNewRange();
             },
             'filters.location.postcode': function (val, oldVal) {
-                this.calculatNewRange();
+                this.getCoordinatesFromPostcode();
             }
         },
         mounted: function () {
-            // this.getCoordinatesFromPostcode();
+            this.getCoordinatesFromPostcode();
+            this.makeDate();
         }
     }
 </script>

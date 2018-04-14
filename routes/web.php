@@ -14,3 +14,10 @@
 Route::get('/', 'PageController@index');
 
 Route::resource('tournaments', 'TournamentController');
+
+
+/*
+ *  api - ajax
+ */
+Route::get('/api/postcode/{postcode}','Api\LocationController@show');
+Route::get('/api/tournaments','Api\TounamentController@index');

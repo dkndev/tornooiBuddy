@@ -3,8 +3,15 @@
 @section('content')
     <div class="row">
         <div class="col-12 col-md-8 col-lg-9">
-            <google-map :center="center" :zoom="7" style="width: 100%; height: 400px">
-                <google-marker :key="m.index" v-for="m in markers" :position="m.position" :clickable="true" :draggable="false" @click="center=m.position"></google-marker>
+            <google-map :center="center" :zoom="8" style="width: 100%; height: 400px">
+                <google-marker :key="m.index" v-for="m in markers" :position="m.position" :clickable="true"
+                               :draggable="false" @click="center=m.position" @mouseover="statusText = m.text"
+                               @mouseout=""></google-marker>
+                <div slot="visible">
+                    <div style="bottom: 0; left: 0; background-color: #343a40; color: white; position: absolute; z-index: 100">
+                        @{{statusText}}
+                    </div>
+                </div>
             </google-map>
         </div>
         <tournament-filter></tournament-filter>
