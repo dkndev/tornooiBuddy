@@ -20,4 +20,8 @@ Route::resource('tournaments', 'TournamentController');
  *  api - ajax
  */
 Route::get('/api/postcode/{postcode}','Api\LocationController@show');
-Route::get('/api/tournaments','Api\TounamentController@index');
+Route::get('/api/tournaments','Api\TounamentController@all');
+Route::post('/api/tournaments','Api\TounamentController@filtert');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

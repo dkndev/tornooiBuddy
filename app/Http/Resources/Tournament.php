@@ -9,20 +9,23 @@ class Tournament extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
     {
         return [
-            'name'  => $this->name,
-            'location'  => [
-                'address'  => $this->location->address,
-                'latitude'  => $this->location->latitude,
-                'longitude'  => $this->location->longitude,
+            'name' => $this->name,
+            'location' => [
+                'address' => $this->location->address,
+                'latitude' => $this->location->latitude,
+                'longitude' => $this->location->longitude,
             ],
-
-            'contact'  => $this->contact->name,
+            'date' => [
+                'start' => $this->date_start,
+                'end' => $this->date_end,
+            ],
+            'contact' => $this->contact->name,
         ];
     }
 }

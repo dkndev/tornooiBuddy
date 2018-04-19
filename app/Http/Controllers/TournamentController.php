@@ -15,7 +15,7 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        $t = Tournament::all();
+        $t = Tournament::orderBy('date_start')->get();
         return view('tournament.index',[
             'tournaments' => $t
         ]);

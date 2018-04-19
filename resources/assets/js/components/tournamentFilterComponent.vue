@@ -62,12 +62,13 @@
                     <label for="check-D" class="form-check-label">D</label>
                 </div>
             </form>
-            <button v-on:click="getCoordinatesFromPostcode">tset</button>
+            <button v-on:click="getTournaments">filter</button>
         </div>
     </div>
 </template>
 
 <script>
+    import {EventBus} from '../my-vues/eventBus';
     export default {
         data() {
             return {
@@ -138,6 +139,30 @@
                             console.log(error);
                         });
                 }
+            },
+            getTournaments: function () {
+                axios({
+                    method: 'post',
+                    url:'http://tornooibuddy.local/api/tournaments/',
+                    responseType: 'json',
+                    data:{
+                        filter: {
+                            location:{
+                                max:{
+                                    lat: this.maxRange.maxLat,
+                                    lon: this.maxRange.maxLon
+                                },
+                                min:{
+                                    lat: this.maxRange.minLat,
+                                    lon: this.maxRange.minLon
+                                }
+                            }
+                        }
+                    }
+                }).then((response) => {
+                   this.tournaments = response.data.data;
+                   EventBus.$emit('TournamentPosts', this.tournaments);
+                });
             }
         },
         watch: {
