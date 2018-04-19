@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'PageController@index');
 
 Route::resource('tournaments', 'TournamentController');
@@ -22,6 +24,5 @@ Route::resource('tournaments', 'TournamentController');
 Route::get('/api/postcode/{postcode}','Api\LocationController@show');
 Route::get('/api/tournaments','Api\TounamentController@all');
 Route::post('/api/tournaments','Api\TounamentController@filtert');
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
