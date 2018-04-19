@@ -109,7 +109,6 @@
                 oneYear = d.getFullYear()+1 + '-' + month + '-' + day;
                 this.filters.date.start = today;
                 this.filters.date.end = oneYear;
-
             },
             calculatNewRange: function () {
                 console.log('range');
@@ -122,8 +121,8 @@
             getCoordinatesFromPostcode: function () {
                 let postcode = this.filters.location.postcode;
                 if (postcode.length === 4) {
-                    console.log('axios');
-                    axios.get('http://tornooibuddy.local/api/postcode/' + postcode, {
+                    console.log('axios postcode');
+                    axios.get('/api/postcode/' + postcode, {
                         responseType: 'json',
                     })
                         .then(response => {
@@ -143,7 +142,7 @@
             getTournaments: function () {
                 axios({
                     method: 'post',
-                    url:'http://tornooibuddy.local/api/tournaments/',
+                    url:'/api/tournaments/',
                     responseType: 'json',
                     data:{
                         filter: {
@@ -160,8 +159,19 @@
                         }
                     }
                 }).then((response) => {
-                   this.tournaments = response.data.data;
-                   EventBus.$emit('TournamentPosts', this.tournaments);
+                    this.tournaments = response.data.data;
+                    EventBus.$emit('TournamentPosts', this.tournaments);
+                });
+            },
+            getAllTournaments: function () {
+                console.log("axios all tournaments");
+                axios({
+                    method: 'get',
+                    url:'/api/tournaments/',
+                    responseType: 'json',
+                }).then((response) => {
+                    this.tournaments = response.data.data;
+                    EventBus.$emit('TournamentPosts', this.tournaments);
                 });
             }
         },
@@ -178,7 +188,9 @@
         },
         mounted: function () {
             this.getCoordinatesFromPostcode();
+            this.calculatNewRange();
             this.makeDate();
+            this.getAllTournaments();
         }
     }
 </script>
