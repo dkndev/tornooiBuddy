@@ -15,8 +15,7 @@ class CreateRankingsTable extends Migration
     {
         Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rank',5);
-            $table->timestamps();
+            $table->string('rank',2);
         });
     }
 

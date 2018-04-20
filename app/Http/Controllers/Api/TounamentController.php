@@ -40,16 +40,16 @@ class TounamentController extends Controller
         $max["lon"] = $json["filter"]["location"]["max"]["lon"];
         $min["lat"] = $json["filter"]["location"]["min"]["lat"];
         $min["lon"] = $json["filter"]["location"]["min"]["lon"];
-//        $startDate = $json["filter"]["date"]["start"];
-//        $endDate = $json["filter"]["date"]["end"];
+        $startDate = $json["filter"]["date"]["start"];
+        $endDate = $json["filter"]["date"]["end"];
         $t = Tournament::whereHas('location', function ($query) use ($max, $min) {
             $query->where('latitude', '<=', $max["lat"]);
             $query->where('longitude', '<=', $max["lon"]);
             $query->where('latitude', '>=', $min["lat"]);
             $query->where('longitude', '>=', $min["lon"]);
         })
-//            ->where('date_start', '>=', $startDate)
-//            ->where('date_end', '<=', $endDate)
+            ->where('date_start', '>=', $startDate)
+            ->where('date_end', '<=', $endDate)
             ->orderBy('date_start')->get();
 
 

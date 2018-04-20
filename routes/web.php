@@ -26,3 +26,10 @@ Route::get('/api/tournaments','Api\TounamentController@all');
 Route::post('/api/tournaments','Api\TounamentController@filtert');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/api/user/{id}', function ($id){
+
+    $u = \App\Models\Users\User::find($id);
+    return new \App\Http\Resources\User($u);
+
+});

@@ -4,8 +4,13 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Models\Tournaments\Tournament::class, function (Faker $faker) {
 
-    $startDate = "2018-" . rand(1,12) . '-' . rand(1,31);
-    $endDate =  new DateTime($startDate);
+    $mond = rand(1, 12);
+    $mond = ($mond < 10) ? '0' . $mond : $mond;
+    $day = rand(1, 30);
+    $day = ($day < 10) ? '0' . $day : $day;
+
+    $startDate = "2018-" . $mond . '-' . $day;
+    $endDate = new DateTime($startDate);
     $endDate->modify('+1 day');
 
     return [

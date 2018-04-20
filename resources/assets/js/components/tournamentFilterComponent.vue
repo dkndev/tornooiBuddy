@@ -70,23 +70,23 @@
 <script>
     import {EventBus} from '../my-vues/eventBus';
     export default {
+        props: ['user','ranking'],
         data() {
             return {
                 name: "tournament-filter-component",
-                user: {},
                 tournaments: {},
                 filters: {
                     date: {
                         start: "",
-                        end: null
+                        end: ""
                     },
                     location: {
-                        postcode: 3040,
+                        postcode: null,
                         coordinates: {
-                            lat: 51.02,
-                            lon: 4.03
+                            lat: null,
+                            lon: null
                         },
-                        distance: 300
+                        distance: 50
                     }
                 },
                 maxRange: {
@@ -99,6 +99,11 @@
             }
         },
         methods: {
+            setUser:function () {
+              this.filters.location.postcode = this.user[0].location.postcode;
+              this.filters.location.coordinates.lat = this.user[0].location.latitude;
+              this.filters.location.coordinates.lon = this.user[0].location.longitude;
+            },
             makeDate: function () {
                 let today = "";
                 let oneYear = "";
@@ -155,6 +160,10 @@
                                     lat: this.maxRange.minLat,
                                     lon: this.maxRange.minLon
                                 }
+                            },
+                            date:{
+                                start: this.filters.date.start,
+                                end:this.filters.date.end,
                             }
                         }
                     }
@@ -187,7 +196,7 @@
             }
         },
         mounted: function () {
-            this.getCoordinatesFromPostcode();
+            this.setUser();
             this.calculatNewRange();
             this.makeDate();
             this.getAllTournaments();

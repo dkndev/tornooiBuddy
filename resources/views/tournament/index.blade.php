@@ -14,7 +14,7 @@
                 </div>
             </google-map>
         </div>
-        <tournament-filter></tournament-filter>
+        <tournament-filter :user="{{$user}}" :ranking="{{$user_ranking}}"></tournament-filter>
     </div>
     <div class="row">
         <div class="col-12 col-md-8 col-lg-9">

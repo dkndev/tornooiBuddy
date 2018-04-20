@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Tournaments\Tournament;
+use App\Models\Users\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TournamentController extends Controller
 {
@@ -20,9 +22,26 @@ class TournamentController extends Controller
      */
     public function index()
     {
-        $t = Tournament::orderBy('date_start')->get();
-        return view('tournament.index',[
-            'tournaments' => $t
+        $user = User::select('age', 'gender', 'postcode_id')
+            ->where('id', '=', Auth::user()->id)
+            ->with('location')
+            ->limit(1)
+            ->get();
+
+        $ranking = User::select('rank_single','rank_dubbles','rank_mix')
+            ->where('id', '=', Auth::user()->id)
+            ->with('singleRank')
+            ->with('dubbleRank')
+            ->with('mixRank')
+            ->limit(1)
+            ->get();
+
+//        unset($user->id);
+//        unset($user->created_at);
+//        dd($user);
+        return view('tournament.index', [
+            'user' => $user,
+            'user_ranking'  => $ranking
         ]);
     }
 
@@ -56,7 +75,7 @@ class TournamentController extends Controller
     public function show($id)
     {
         $t = Tournament::find($id);
-        return view('tournament.show',[
+        return view('tournament.show', [
             't' => $t
         ]);
     }

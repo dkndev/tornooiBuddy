@@ -22431,7 +22431,7 @@ exports = module.exports = __webpack_require__(24)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22515,23 +22515,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['user', 'ranking'],
     data: function data() {
         return {
             name: "tournament-filter-component",
-            user: {},
             tournaments: {},
             filters: {
                 date: {
                     start: "",
-                    end: null
+                    end: ""
                 },
                 location: {
-                    postcode: 3040,
+                    postcode: null,
                     coordinates: {
-                        lat: 51.02,
-                        lon: 4.03
+                        lat: null,
+                        lon: null
                     },
-                    distance: 300
+                    distance: 50
                 }
             },
             maxRange: {
@@ -22545,6 +22545,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
+        setUser: function setUser() {
+            this.filters.location.postcode = this.user[0].location.postcode;
+            this.filters.location.coordinates.lat = this.user[0].location.latitude;
+            this.filters.location.coordinates.lon = this.user[0].location.longitude;
+        },
         makeDate: function makeDate() {
             var today = "";
             var oneYear = "";
@@ -22603,6 +22608,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 lat: this.maxRange.minLat,
                                 lon: this.maxRange.minLon
                             }
+                        },
+                        date: {
+                            start: this.filters.date.start,
+                            end: this.filters.date.end
                         }
                     }
                 }
@@ -22637,7 +22646,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
-        this.getCoordinatesFromPostcode();
+        this.setUser();
         this.calculatNewRange();
         this.makeDate();
         this.getAllTournaments();
