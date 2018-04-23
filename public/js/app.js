@@ -448,7 +448,9 @@ module.exports = function(module) {
 /* 19 */,
 /* 20 */,
 /* 21 */,
-/* 22 */
+/* 22 */,
+/* 23 */,
+/* 24 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -638,7 +640,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11604,8 +11606,6 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(34).setImmediate))
 
 /***/ }),
-/* 24 */,
-/* 25 */,
 /* 26 */,
 /* 27 */,
 /* 28 */,
@@ -11714,7 +11714,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
 
 /***/ }),
 /* 34 */
@@ -11974,7 +11974,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(22)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(24)))
 
 /***/ }),
 /* 36 */,
@@ -25207,7 +25207,7 @@ module.exports = __webpack_require__(118);
 
 __webpack_require__(96);
 
-window.Vue = __webpack_require__(23);
+window.Vue = __webpack_require__(25);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

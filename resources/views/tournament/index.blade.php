@@ -1,6 +1,11 @@
 @extends('base')
 
 @section('content')
+
+    <div class="loader" style="position: absolute; top: 50vh; left: 35vw; z-index: 1000;">
+        <loader :loading="loading" :color="color" :size="size"></loader>
+    </div>
+
     <div class="row">
         <div class="col-12 col-md-8 col-lg-9">
             <google-map :center="center" :zoom="8" style="width: 100%; min-height: 400px; height: 100%;">
@@ -8,7 +13,7 @@
                                :draggable="false" @click="center=m.position" @mouseover="statusText = m.text"
                                @mouseout=""></google-marker>
                 <div slot="visible">
-                    <div style="bottom: 0; left: 0; background-color: #343a40; color: white; position: absolute; z-index: 100">
+                    <div style="top: 0; left: 35%; background-color: #343a40; color: white; position: absolute; z-index: 100">
                         @{{statusText}}
                     </div>
                 </div>

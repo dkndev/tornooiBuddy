@@ -54,6 +54,8 @@ class TounamentController extends Controller
 
 
 //        $t = Tournament::has('location.latitude','>=',5)->get();
-        return new TournamentCollection($t);
+        $resource = new TournamentCollection($t);
+        $contentLength = strlen(($resource->response()->getOriginalContent())) + 9 ;
+        return $resource->response()->header('content-Length',$contentLength);
     }
 }

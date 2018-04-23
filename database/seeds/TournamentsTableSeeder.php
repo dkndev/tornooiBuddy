@@ -13,7 +13,7 @@ class TournamentsTableSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         \App\Models\Tournaments\Tournament::truncate();
-        factory(\App\Models\Tournaments\Tournament::class,20)->create()->each(function ($bar){
+        factory(\App\Models\Tournaments\Tournament::class,50)->create()->each(function ($bar){
             $bar->rankings()->sync(
                 \App\Models\Tournaments\Ranking::all()->random(rand(1,6))
             );

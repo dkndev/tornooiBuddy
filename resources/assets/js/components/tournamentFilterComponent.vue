@@ -145,10 +145,16 @@
                 }
             },
             getTournaments: function () {
+                EventBus.$emit('Loading', true);
                 axios({
                     method: 'post',
                     url:'/api/tournaments/',
                     responseType: 'json',
+                    onDownloadProgress: function (e) {
+                        var d = new Date;
+                        var progress = Math.round((e.loaded * 100)/e.total);
+                        console.log("This just in... ", progress, ' - ', d.getSeconds(), '-', d.getMilliseconds());
+                    },
                     data:{
                         filter: {
                             location:{
@@ -170,6 +176,7 @@
                 }).then((response) => {
                     this.tournaments = response.data.data;
                     EventBus.$emit('TournamentPosts', this.tournaments);
+                    EventBus.$emit('Loading', false);
                 });
             },
             getAllTournaments: function () {

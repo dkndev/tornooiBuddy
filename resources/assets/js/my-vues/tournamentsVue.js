@@ -2,7 +2,8 @@ import Vue from 'vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import TournamentFilter from '../components/tournamentFilterComponent'
 import TournamentPost from '../components/TournamentPostComponent'
-import {EventBus} from '../my-vues/eventBus';
+import {EventBus} from '../my-vues/eventBus'
+import Loader from 'vue-spinner/src/clipLoader.vue'
 
 Vue.use(VueGoogleMaps, {
     load: {
@@ -18,6 +19,7 @@ Vue.component('google-map', VueGoogleMaps.Map);
 Vue.component('google-marker', VueGoogleMaps.Marker);
 Vue.component('tournament-filter', TournamentFilter);
 Vue.component('tournament-post', TournamentPost);
+Vue.component('loader', Loader);
 
 const vue = new Vue({
     el: '#vueApp',
@@ -28,7 +30,10 @@ const vue = new Vue({
         },
         markers: [],
         statusText: '',
-        tournaments: []
+        tournaments: [],
+        color: "#c52b20",
+        size: '100px',
+        loading: false
         // TODO statusText omzeten naar url link
     },
     methods: {
@@ -49,6 +54,9 @@ const vue = new Vue({
         EventBus.$on('TournamentPosts', (payLoad) => {
             this.tournaments = payLoad;
             this.newMarkers();
+        });
+        EventBus.$on('Loading', (payLoad) => {
+            this.loading = payLoad;
         });
     }
 });

@@ -8,5 +8,9 @@ export const EventBus = new Vue();
 // });
 
 EventBus.$on('TournamentPosts', tournaments => {
-    console.log(`Oh, that's nice. It's gotten ${tournaments} clicks! :)`)
+    // console.log(`Oh, that's nice. It's gotten ${tournaments} clicks! :)`)
+});
+
+EventBus.$on('Loading', state => {
+    // console.log(`Oh, that's nice. It's gotten ${tournaments} clicks! :)`)
 });
