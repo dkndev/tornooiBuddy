@@ -2,6 +2,26 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     @include('partials.head')
+    {{--TODO REMOVE STYLE TO STYLE SHEET--}}
+    <style>
+        #hoverMsgWapper {
+            padding: 0 10px 5px;
+            border-radius:  0 0 20px 20px;
+            top: 0;
+            left: 25%;
+            width: 50%;
+            background-color: #343a40;
+            color: white;
+            position: absolute;
+            z-index: 100;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        #hoverMsgWapper a {
+            color: red;
+        }
+
+    </style>
 </head>
 <body>
 

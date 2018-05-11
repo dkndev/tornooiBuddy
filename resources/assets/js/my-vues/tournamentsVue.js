@@ -29,12 +29,17 @@ const vue = new Vue({
             lng: 4.36
         },
         markers: [],
-        statusText: '',
+        hoverMsg: {
+            text: '',
+            id: null
+        },
         tournaments: [],
         color: "#c52b20",
         size: '100px',
         loading: false
-        // TODO statusText omzeten naar url link
+    },
+    computed: {
+
     },
     methods: {
         newMarkers: function () {
@@ -46,8 +51,13 @@ const vue = new Vue({
                 obj.position.lat = e.location.latitude;
                 obj.position.lng = e.location.longitude;
                 obj.text = e.name;
+                obj.id = e.id;
                 this.markers.push(obj);
             })
+        },
+        setHoverMsg: function (m) {
+            this.hoverMsg.text = m.text;
+            this.hoverMsg.id = m.id
         }
     },
     mounted: function () {

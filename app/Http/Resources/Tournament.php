@@ -15,6 +15,7 @@ class Tournament extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'location' => [
                 'address' => $this->location->address,

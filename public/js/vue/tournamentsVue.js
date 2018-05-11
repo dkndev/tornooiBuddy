@@ -14898,7 +14898,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_TournamentPostComponent__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_TournamentPostComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_TournamentPostComponent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__my_vues_eventBus__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_spinner_src_clipLoader_vue__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_spinner_src_clipLoader_vue__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vue_spinner_src_clipLoader_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vue_spinner_src_clipLoader_vue__);
 
 
@@ -14931,13 +14931,16 @@ var vue = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             lng: 4.36
         },
         markers: [],
-        statusText: '',
+        hoverMsg: {
+            text: '',
+            id: null
+        },
         tournaments: [],
         color: "#c52b20",
         size: '100px',
         loading: false
-        // TODO statusText omzeten naar url link
     },
+    computed: {},
     methods: {
         newMarkers: function newMarkers() {
             var _this = this;
@@ -14950,8 +14953,13 @@ var vue = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 obj.position.lat = e.location.latitude;
                 obj.position.lng = e.location.longitude;
                 obj.text = e.name;
+                obj.id = e.id;
                 _this.markers.push(obj);
             });
+        },
+        setHoverMsg: function setHoverMsg(m) {
+            this.hoverMsg.text = m.text;
+            this.hoverMsg.id = m.id;
         }
     },
     mounted: function mounted() {
@@ -22445,7 +22453,7 @@ exports = module.exports = __webpack_require__(19)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -22637,6 +22645,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (response) {
                 _this2.tournaments = response.data.data;
+                console.log(response.data);
                 __WEBPACK_IMPORTED_MODULE_0__my_vues_eventBus__["a" /* EventBus */].$emit('TournamentPosts', _this2.tournaments);
                 __WEBPACK_IMPORTED_MODULE_0__my_vues_eventBus__["a" /* EventBus */].$emit('Loading', false);
             });
@@ -23107,27 +23116,19 @@ if (false) {
 }
 
 /***/ }),
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(278)
+  __webpack_require__(270)
 }
 var normalizeComponent = __webpack_require__(10)
 /* script */
-var __vue_script__ = __webpack_require__(280)
+var __vue_script__ = __webpack_require__(272)
 /* template */
-var __vue_template__ = __webpack_require__(281)
+var __vue_template__ = __webpack_require__(273)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -23166,13 +23167,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 278 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(279);
+var content = __webpack_require__(271);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -23192,7 +23193,7 @@ if(false) {
 }
 
 /***/ }),
-/* 279 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(19)(false);
@@ -23206,7 +23207,7 @@ exports.push([module.i, "\n.v-spinner\n{\n/*\t  font-size: 10px; \n\n    width: 
 
 
 /***/ }),
-/* 280 */
+/* 272 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23257,7 +23258,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 281 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

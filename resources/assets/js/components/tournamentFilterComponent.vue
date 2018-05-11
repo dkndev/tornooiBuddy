@@ -175,6 +175,7 @@
                     }
                 }).then((response) => {
                     this.tournaments = response.data.data;
+                    console.log(response.data);
                     EventBus.$emit('TournamentPosts', this.tournaments);
                     EventBus.$emit('Loading', false);
                 });
