@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
             'name' => 'nelis de kerpel',
             'email' => 'nelisdekerpel@hotmail.com',
             'password' => bcrypt('test'),
-            'age' => 23,
+            'birthday' => '1995-02-14',
             'gender' => 'M',
             'postcode_id' => 1125,
             'rank_single' => 2,

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Tournaments\Tournament;
+use App\Models\Tournaments\Ranking;
 use App\Models\Users\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TournamentController extends Controller
+class userSettingsController extends Controller
 {
+    /**
+     * userSettingsController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -28,7 +30,9 @@ class TournamentController extends Controller
             ->limit(1)
             ->get();
 
-        $ranking = User::select('rank_single','rank_dubbles','rank_mix')
+        $user = User::find(Auth::user()->id);
+
+        $ranking = User::select('rank_single', 'rank_dubbles', 'rank_mix')
             ->where('id', '=', Auth::user()->id)
             ->with('singleRank')
             ->with('dubbleRank')
@@ -36,12 +40,12 @@ class TournamentController extends Controller
             ->limit(1)
             ->get();
 
-//        unset($user->id);
-//        unset($user->created_at);
-//        dd($user);
-        return view('tournament.index', [
+        $rankingOptions = Ranking::all();
+        $rankingOptions = json_encode($rankingOptions);
+        return view('user-dashboard.settings', [
             'user' => $user,
-            'user_ranking'  => $ranking
+            'ranking' => $ranking,
+            'rankingOptions' => $rankingOptions
         ]);
     }
 
@@ -74,10 +78,7 @@ class TournamentController extends Controller
      */
     public function show($id)
     {
-        $t = Tournament::find($id);
-        return view('tournament.show', [
-            't' => $t
-        ]);
+        //
     }
 
     /**

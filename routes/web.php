@@ -16,6 +16,7 @@ Auth::routes();
 Route::get('/', 'PageController@index');
 
 Route::resource('tournaments', 'TournamentController');
+Route::resource('settings', 'userSettingsController');
 
 
 /*
